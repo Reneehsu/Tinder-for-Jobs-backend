@@ -100,7 +100,9 @@ app.post('/follow', function(req,res){
       })
       Promise.all(promises)
       .then(jobs=>{
+        console.log(jobs);
         res.json(jobs);
+
       })
     }
   })
