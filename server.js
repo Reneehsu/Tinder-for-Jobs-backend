@@ -158,7 +158,7 @@ app.post('/login/recruiter', function(req, res) {
 //   });
 // })
 
-app.get('/allusers', function(req,res){
+app.post('/allusers', function(req,res){
   //jobid,
   Apply.find({job:req.body.job}, function(err,users){
     if (err){
