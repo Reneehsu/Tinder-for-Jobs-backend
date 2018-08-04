@@ -177,6 +177,17 @@ app.post('/allusers', function(req,res){
   })
 })
 
+app.post('/match',function(req,res){
+  //username of the job , username of the user
+  Apply.findOneAndUpdate({user:req.body.user, job:req.body.job},{match:true},function(err, theApply){
+    if(err){
+      console.log(err);
+    } else {
+      res.send({success:true});
+    }
+  })
+})
+
 
 // DO NOT REMOVE THIS LINE :)
 app.get('/', function (req, res) {
