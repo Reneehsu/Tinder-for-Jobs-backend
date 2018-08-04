@@ -164,21 +164,21 @@ app.post('/allusers', function(req,res){
     if (err){
       console.log(err);
     } else {
-      console.log(applies);
+      console.log("outside everything ", applies);
       var users = [];
       for (var i=0 ; i<applies.length; i++){
         User.findOne({username:applies[i].user},function(err,theUser){
-          console.log(theUser);
+          console.log("the user is ", theUser);
           if (err){
             console.log(err);
           } else {
             users.concat(theUser);
-            console.log(users);
+            console.log("just concat ", users);
             console.log('inside find one')
           }
         })
       }
-      console.log(users);
+      console.log("outside for loop ", users);
       res.json(users);
     }
   })
