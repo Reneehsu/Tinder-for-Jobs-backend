@@ -120,7 +120,13 @@ app.post('/postjob',function(req,res){
     description:req.body.description,
     logo:req.body.logo
   });
-  newJob.save();
+  newJob.save((err) =>{
+    if(err){
+      console.log(err)
+    } else {
+      res.send({success:true});
+    }
+  });
 })
 
 app.get('/allusers', function(req,res){
