@@ -33,8 +33,7 @@ var jobSchema = {
     type: String
   },
   recruiter:{
-    type: mongoose.Schema.ObjectId,
-    ref: 'Recruiter'
+    type: String
   }
 }
 

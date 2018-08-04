@@ -118,7 +118,8 @@ app.post('/postjob',function(req,res){
     company:req.body.company,
     title:req.body.title,
     description:req.body.description,
-    logo:req.body.logo
+    logo:req.body.logo,
+    recruiter: req.body.recuirter
   });
   newJob.save((err) =>{
     if(err){
