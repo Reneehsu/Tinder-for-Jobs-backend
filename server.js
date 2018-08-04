@@ -90,6 +90,7 @@ app.post('/newapply', function(req, res) {
 
 app.post('/follow', function(req,res){
   //return an array of company
+  console.log('follow');
   console.log('user',req.body.user);
   Follow.find({user:req.body.user},function(err,follows){
     if (err){
@@ -114,15 +115,19 @@ app.post('/follow', function(req,res){
 
 
 app.post('/apply',function(req,res){
+  console.log('apply');
+  console.log('user',req.body.user);
   Apply.find({user:req.body.user},function(err,applies){
     if (err){
       console.log(err);
     } else {
+      console.log('applies',applies);
       var promises = applies.map((apply) => {
         return Job.findOne({username:apply.job})
       })
       Promise.all(promises)
       .then(jobs=>{
+        console.log('jobs',jobs);
         res.json(jobs);
       })
     }
