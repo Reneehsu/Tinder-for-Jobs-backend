@@ -98,6 +98,7 @@ app.post('/follow', function(req,res){
       var promises = follows.map((follow) => {
         return Job.findOne({username:follow.job})
       })
+      console.log('promises',promises);
       Promise.all(promises)
       .then(jobs=>{
         console.log('jobs',jobs);
@@ -107,6 +108,9 @@ app.post('/follow', function(req,res){
     }
   })
 })
+
+
+
 
 app.post('/apply',function(req,res){
   Apply.find({user:req.body.user},function(err,applies){
