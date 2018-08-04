@@ -112,7 +112,15 @@ app.post('/follow', function(req,res){
 })
 
 
-
+/*
+var Horizons = new Job ({
+  username: "horizons",
+  password: "horizons",
+  company:'Horizons',
+  title:"MVP TA",
+  description: 'Be patient, be funny, be nice, be the best! Have fun and enjoy coding!',
+  logo:''
+})*/
 
 app.post('/apply',function(req,res){
   console.log('apply');
@@ -130,12 +138,15 @@ app.post('/apply',function(req,res){
       Promise.all(promises)
       .then(jobs=>{
         console.log('bool',bool);
-        for (var i=0; i<jobs.length; i++){
-          console.log(i, bool[i]);
-          jobs[i]["match"]=bool[i];
-        }
+        // for (var i=0; i<jobs.length; i++){
+        //   console.log(i, bool[i]);
+        //   jobs[i]["match"]=bool[i];
+        // }
         console.log('jobs',jobs);
-        res.json(jobs);
+        res.json({
+          job:jobs,
+          bool:bool
+        });
       })
     }
   })
