@@ -112,15 +112,7 @@ app.post('/follow', function(req,res){
 })
 
 
-/*
-var Horizons = new Job ({
-  username: "horizons",
-  password: "horizons",
-  company:'Horizons',
-  title:"MVP TA",
-  description: 'Be patient, be funny, be nice, be the best! Have fun and enjoy coding!',
-  logo:''
-})*/
+
 
 app.post('/apply',function(req,res){
   console.log('apply');
