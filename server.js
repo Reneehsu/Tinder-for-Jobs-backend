@@ -91,11 +91,15 @@ app.post('/newapply', function(req, res) {
 ///////////RECRUITER///////////////
 app.post('/register/recruiter', function(req, res) {
   console.log(req.body);
-  var newRecruiter = new Recruiter({
+  var newJob = new Job({
     username: req.body.username,
-    password: req.body.password
+    password: req.body.password,
+    company:req.body.company,
+    title:req.body.title,
+    description:req.body.description,
+    logo:req.body.logo,
   });
-  newRecruiter.save(function(err) {
+  newJob.save(function(err) {
     if (err) {
       console.log('could not save new user');
     }
@@ -103,8 +107,22 @@ app.post('/register/recruiter', function(req, res) {
   res.json({success: true});
 });
 
+// app.post('/register/recruiter', function(req, res) {
+//   console.log(req.body);
+//   var newRecruiter = new Recruiter({
+//     username: req.body.username,
+//     password: req.body.password
+//   });
+//   newRecruiter.save(function(err) {
+//     if (err) {
+//       console.log('could not save new user');
+//     }
+//   });
+//   res.json({success: true});
+// });
+
 app.post('/login/recruiter', function(req, res) {
-  Recruiter.findOne({username: req.body.username, password: req.body.password}, function(err, user) {
+  Job.findOne({username: req.body.username, password: req.body.password}, function(err, user) {
     if (err) {
       console.log("credentials are wrong");
     } else {
@@ -113,22 +131,32 @@ app.post('/login/recruiter', function(req, res) {
   })
 });
 
-app.post('/postjob',function(req,res){
-  var newJob = new Job({
-    company:req.body.company,
-    title:req.body.title,
-    description:req.body.description,
-    logo:req.body.logo,
-    recruiter: req.body.recruiter
-  });
-  newJob.save((err) =>{
-    if(err){
-      console.log(err)
-    } else {
-      res.send({success:true});
-    }
-  });
-})
+// app.post('/login/recruiter', function(req, res) {
+//   Recruiter.findOne({username: req.body.username, password: req.body.password}, function(err, user) {
+//     if (err) {
+//       console.log("credentials are wrong");
+//     } else {
+//       res.json({success: true});
+//     }
+//   })
+// });
+
+// app.post('/postjob',function(req,res){
+//   var newJob = new Job({
+//     company:req.body.company,
+//     title:req.body.title,
+//     description:req.body.description,
+//     logo:req.body.logo,
+//     recruiter: req.body.recruiter
+//   });
+//   newJob.save((err) =>{
+//     if(err){
+//       console.log(err)
+//     } else {
+//       res.send({success:true});
+//     }
+//   });
+// })
 
 app.get('/allusers', function(req,res){
   //jobid,
