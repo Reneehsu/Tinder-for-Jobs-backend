@@ -160,10 +160,20 @@ app.post('/login/recruiter', function(req, res) {
 
 app.post('/allusers', function(req,res){
   //jobid,
-  Apply.find({job:req.body.job}, function(err,users){
+  Apply.find({job:req.body.job}, function(err,applies){
     if (err){
       console.log(err);
     } else {
+      var users = [];
+      for (var i=0 ; i<applies.length; i++){
+        Users.findOne({username:applies.user},function(err,theUser){
+          if (err){
+            console.log(err);
+          } else {
+            users.push(theUser);
+          }
+        })
+      }
       res.json(users);
     }
   })
