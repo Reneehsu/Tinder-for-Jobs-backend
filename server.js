@@ -90,6 +90,7 @@ app.post('/newapply', function(req, res) {
 
 app.post('/follow', function(req,res){
   //return an array of company
+  console.log('user',req.body.user);
   Follow.find({user:req.body.user},function(err,follows){
     if (err){
       console.log(err);
