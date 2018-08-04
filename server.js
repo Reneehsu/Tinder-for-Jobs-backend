@@ -129,7 +129,9 @@ app.post('/apply',function(req,res){
       })
       Promise.all(promises)
       .then(jobs=>{
+        console.log('bool',bool);
         for (var i=0; i<jobs.length; i++){
+          console.log(i, bool[i]);
           jobs[i]["match"]=bool[i];
         }
         console.log('jobs',jobs);
