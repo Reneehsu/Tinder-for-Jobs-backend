@@ -166,20 +166,13 @@ app.post('/allusers', function(req,res){
     } else {
       console.log("outside everything ", applies);
       var users = [];
-      for (var i=0 ; i<applies.length; i++){
-        User.findOne({username:applies[i].user},function(err,theUser){
-          console.log("the user is ", theUser);
-          if (err){
-            console.log(err);
-          } else {
-            users.concat(theUser);
-            console.log("just concat ", users);
-            console.log('inside find one')
-          }
-        })
-      }
-      console.log("outside for loop ", users);
-      res.json(users);
+      var promises = applies.map((apply) => {
+        return User.findOne({username:apply.user})
+      })
+      Promise.all(promises)
+      .then(users=>{
+        res.json(users);
+      })
     }
   })
 })
