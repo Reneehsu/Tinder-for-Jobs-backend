@@ -172,11 +172,13 @@ app.post('/allusers', function(req,res){
           if (err){
             console.log(err);
           } else {
-            users.push(theUser);
+            users.concat(theUser);
+            console.log(users);
+            console.log('inside find one')
           }
         })
       }
-
+      console.log(users);
       res.json(users);
     }
   })
