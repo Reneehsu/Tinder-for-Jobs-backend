@@ -166,7 +166,7 @@ app.post('/allusers', function(req,res){
     } else {
       var users = [];
       for (var i=0 ; i<applies.length; i++){
-        Users.findOne({username:applies.user},function(err,theUser){
+        Users.findOne({username:applies[i].user},function(err,theUser){
           if (err){
             console.log(err);
           } else {
