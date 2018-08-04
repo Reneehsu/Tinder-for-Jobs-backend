@@ -94,6 +94,7 @@ app.post('/follow', function(req,res){
     if (err){
       console.log(err);
     } else {
+      console.log(follows);
       var promises = follows.map((follow) => {
         return Job.findOne({username:follow.job})
       })
