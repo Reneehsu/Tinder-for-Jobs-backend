@@ -88,6 +88,25 @@ app.post('/newapply', function(req, res) {
   });
 })
 
+app.get('/follow', function(req,res){
+  Follow.find({user:req.body.user},function(err,follows){
+    if (err){
+      console.log(err);
+    } else {
+      res.json(follows);
+    }
+  })
+})
+
+app.get('/apply',function(req,res){
+  Apply.find({user:req.body.user},function(err,applies){
+    if (err){
+      console.log(err);
+    } else {
+      res.json(applies);
+    }
+  })
+})
 ///////////RECRUITER///////////////
 app.post('/register/recruiter', function(req, res) {
   console.log(req.body);
