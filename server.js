@@ -94,13 +94,13 @@ app.post('/follow', function(req,res){
     if (err){
       console.log(err);
     } else {
-      console.log(follows);
+      console.log('follows',follows);
       var promises = follows.map((follow) => {
         return Job.findOne({username:follow.job})
       })
       Promise.all(promises)
       .then(jobs=>{
-        console.log(jobs);
+        console.log('jobs',jobs);
         res.json(jobs);
 
       })
