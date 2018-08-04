@@ -88,22 +88,35 @@ app.post('/newapply', function(req, res) {
   });
 })
 
-app.get('/follow', function(req,res){
+app.post('/follow', function(req,res){
+  //return an array of company
   Follow.find({user:req.body.user},function(err,follows){
     if (err){
       console.log(err);
     } else {
-      res.json(follows);
+      var promises = follows.map((follow) => {
+        return Job.findOne({username:follow.job})
+      })
+      Promise.all(promises)
+      .then(jobs=>{
+        res.json(jobs);
+      })
     }
   })
 })
 
-app.get('/apply',function(req,res){
+app.post('/apply',function(req,res){
   Apply.find({user:req.body.user},function(err,applies){
     if (err){
       console.log(err);
     } else {
-      res.json(applies);
+      var promises = apply.map((apply) => {
+        return Job.findOne({username:follow.job})
+      })
+      Promise.all(promises)
+      .then(jobs=>{
+        res.json(jobs);
+      })
     }
   })
 })
