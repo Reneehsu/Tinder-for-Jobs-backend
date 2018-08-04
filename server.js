@@ -113,6 +113,16 @@ app.post('/login/recruiter', function(req, res) {
   })
 });
 
+app.post('/postjob',function(req,res){
+  var newJob = new Job({
+    company:req.body.company,
+    title:req.body.title,
+    description:req.body.description,
+    logo:req.body.logo
+  });
+  newJob.save();
+})
+
 app.get('/allusers', function(req,res){
   //jobid,
   Apply.find({job:req.body.job}, function(err,users){
