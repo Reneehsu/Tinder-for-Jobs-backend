@@ -110,7 +110,7 @@ app.post('/apply',function(req,res){
     if (err){
       console.log(err);
     } else {
-      var promises = apply.map((apply) => {
+      var promises = applies.map((apply) => {
         return Job.findOne({username:follow.job})
       })
       Promise.all(promises)
