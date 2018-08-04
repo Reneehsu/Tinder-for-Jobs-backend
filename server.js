@@ -129,11 +129,11 @@ app.post('/apply',function(req,res){
       })
       Promise.all(promises)
       .then(jobs=>{
+        for (var i=0; i<jobs.length; i++){
+          jobs[i]["match"]=bool[i];
+        }
         console.log('jobs',jobs);
-        res.json({
-          job:jobs,
-          bool:bool
-        });
+        res.json(jobs);
       })
     }
   })
