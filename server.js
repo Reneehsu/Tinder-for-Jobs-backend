@@ -119,7 +119,7 @@ app.post('/postjob',function(req,res){
     title:req.body.title,
     description:req.body.description,
     logo:req.body.logo,
-    recruiter: req.body.recuirter
+    recruiter: req.body.recruiter
   });
   newJob.save((err) =>{
     if(err){
