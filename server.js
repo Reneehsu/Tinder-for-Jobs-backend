@@ -122,17 +122,24 @@ app.post('/apply',function(req,res){
       console.log(err);
     } else {
       console.log('applies',applies);
+      var bool = [];
       var promises = applies.map((apply) => {
+        bool.push(apply.match);
         return Job.findOne({username:apply.job})
       })
       Promise.all(promises)
       .then(jobs=>{
         console.log('jobs',jobs);
-        res.json(jobs);
+        res.json({
+          job:jobs,
+          bool:bool
+        });
       })
     }
   })
 })
+
+
 ///////////RECRUITER///////////////
 app.post('/register/recruiter', function(req, res) {
   console.log(req.body);
