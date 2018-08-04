@@ -89,6 +89,20 @@ app.post('/newapply', function(req, res) {
 })
 
 ///////////RECRUITER///////////////
+app.post('/register/recruiter', function(req, res) {
+  console.log(req.body);
+  var newRecruiter = new Recruiter({
+    username: req.body.username,
+    password: req.body.password
+  });
+  newRecruiter.save(function(err) {
+    if (err) {
+      console.log('could not save new user');
+    }
+  });
+  res.json({success: true});
+});
+
 app.post('/login/recruiter', function(req, res) {
   Recruiter.findOne({username: req.body.username, password: req.body.password}, function(err, user) {
     if (err) {
@@ -98,6 +112,17 @@ app.post('/login/recruiter', function(req, res) {
     }
   })
 });
+
+app.get('/allusers', function(req,res){
+  //jobid,
+  Apply.find({job:req.body.job}, function(err,users){
+    if (err){
+      console.log(err);
+    } else {
+      res.json(users);
+    }
+  })
+})
 
 
 // DO NOT REMOVE THIS LINE :)
