@@ -20,6 +20,7 @@ var User = models.User;
 var Job = models.Job;
 var Follow = models.Follow;
 var Apply = models.Apply;
+var Recruiter = models.Recruiter;
 
 app.use(express.static(path.join(__dirname, 'build')));
 app.use(bodyParser.json());
@@ -86,6 +87,17 @@ app.post('/newapply', function(req, res) {
     }
   });
 })
+
+///////////RECRUITER///////////////
+app.post('/login/recruiter', function(req, res) {
+  Recruiter.findOne({username: req.body.username, password: req.body.password}, function(err, user) {
+    if (err) {
+      console.log("credentials are wrong");
+    } else {
+      res.json({success: true});
+    }
+  })
+});
 
 
 // DO NOT REMOVE THIS LINE :)

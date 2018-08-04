@@ -31,6 +31,10 @@ var jobSchema = {
   },
   logo: {
     type: String
+  },
+  recruiter:{
+    type: mongoose.Schema.ObjectId,
+    ref: 'Recruiter'
   }
 }
 
@@ -39,8 +43,7 @@ var jobSchema = {
 
 var followSchema = new mongoose.Schema({
   user: {
-    type: mongoose.Schema.ObjectId,
-    ref: "User"
+    type: String
   },
   job: {
     type: mongoose.Schema.ObjectId,
@@ -53,8 +56,7 @@ var followSchema = new mongoose.Schema({
 
 var applySchema = new mongoose.Schema({
   user: {
-    type: mongoose.Schema.ObjectId,
-    ref: "User"
+    type: String
   },
   job: {
     type: mongoose.Schema.ObjectId,
@@ -66,15 +68,26 @@ var applySchema = new mongoose.Schema({
   }
 });
 
+var recruiterSchema = {
+  username: {
+    type: String
+  },
+  password: {
+    type: String
+  }
+}
+
 
 var User = mongoose.model("User", userSchema);
 var Job = mongoose.model("Job", jobSchema);
 var Follow = mongoose.model("Follow", followSchema);
 var Apply = mongoose.model("Apply", applySchema);
+var Recruiter = mongoose.model("Recruiter",recruiterSchema);
 
 module.exports = {
   User: User,
   Job: Job,
   Follow: Follow,
-  Apply: Apply
+  Apply: Apply,
+  Recruiter: Recruiter
 }
