@@ -164,6 +164,7 @@ app.post('/allusers', function(req,res){
     if (err){
       console.log(err);
     } else {
+      console.log(applies);
       var users = [];
       for (var i=0 ; i<applies.length; i++){
         Users.findOne({username:applies[i].user},function(err,theUser){
