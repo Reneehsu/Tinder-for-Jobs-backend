@@ -36,7 +36,7 @@ app.get('/allJobs', function(req, res) {
   })
 });
 
-app.post('/login', function(req, res) {
+app.post('/login/user', function(req, res) {
   User.findOne({username: req.body.username, password: req.body.password}, function(err, user) {
     if (err) {
       console.log("credentials are wrong");
@@ -47,7 +47,7 @@ app.post('/login', function(req, res) {
 });
 
 
-app.post('/register', function(req, res) {
+app.post('/register/user', function(req, res) {
   console.log(req.body);
   var newUser = new User({
     username: req.body.username,
